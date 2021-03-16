@@ -1,0 +1,112 @@
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+  <div id="a1">
+    Number of rows: <input type="text" id="t1" /><br><br>
+  	Number of cols: <input type="text" id="t2" /><br><br>
+  
+  </div>
+
+	<button id="b1" onclick="generateTable()">Add table</button><br><br>
+
+	<button id="b2" onclick="addColumn()">Add column</button>
+
+	<button id="b3" onclick="addRow()">Add row</button>
+	<body>
+
+	<script >
+
+ function generateTable(){
+	var x1=document.getElementById("t1").value;
+		var y1=document.getElementById("t2").value;
+
+  var body = document.getElementsByTagName("body")[0];
+
+  // creating tablex  and tableBody elements
+  var tablex = document.createElement("table");
+  var tableBody = document.createElement("tbody");
+
+  // creating the all cells
+  for (var l = 0; l < x1; l++) {
+    // creating   table rows
+    var row = document.createElement("tr");
+    
+    for (var m = 0; m < y1; m++) {
+      // Creating a <td> element 
+
+      // contents of the <td>
+
+      //  end of  table row
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode("cell in row "+l+", column "+m);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+
+
+    // adding  row at end of the table body
+    tableBody.appendChild(row);
+  }
+
+
+  // put the tableBody element in the <table>
+  tablex.appendChild(tableBody);
+  // appends <table> into <body>
+  body.appendChild(tablex);
+  // sets the border attribute of tbl to 2;
+  tablex.setAttribute("border", "3");
+
+  document.getElementById("a1").style.visibility = "hidden";
+  document.getElementById("b1").style.visibility = "hidden";
+
+}
+
+
+
+
+//fxn for adding column
+function addColumn()
+ {
+    document.getElementsByTagName("table")[0].setAttribute("id", "table1");
+
+    var table2= document.getElementById("table1");
+
+    var l=table2.rows.length;
+    var col=table2.rows[0].cells.length;
+    //console.log(col);
+    for(var m=0;m<l;m++)
+    {
+
+      var cell1=table2.rows[m].insertCell(table2.rows[m].cells.length); 
+
+    // Add some text to the new cells:
+     cell1.innerHTML = "cell in row "+m+", column "+ col;
+    }
+}
+
+
+
+
+
+//function for adding row
+ function addRow()
+ {
+    document.getElementsByTagName("table")[0].setAttribute("id", "table1");
+
+    var table2= document.getElementById("table1");
+
+    var l=table2.rows.length
+    var row = table2.insertRow(l);
+    for(var m=0;m<table2.rows[0].cells.length;m++)
+    {
+
+    var cell1 = row.insertCell(m);
+
+    
+    cell1.innerHTML = "cell in row "+l+", column "+m;
+    }
+}
+
+	</script>
+</body>
+
+</html>
